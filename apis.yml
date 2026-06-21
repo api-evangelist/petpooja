@@ -1,0 +1,147 @@
+aid: petpooja
+url: https://raw.githubusercontent.com/api-evangelist/petpooja/refs/heads/main/apis.yml
+name: Petpooja
+kind: company
+description: Petpooja is a restaurant point-of-sale (POS) and management platform serving
+  75,000+ restaurants across India, the Middle East, Canada, and South Africa. Its
+  Online Ordering API lets aggregators and partner ordering platforms sync a restaurant's
+  menu/catalog, push orders into the Petpooja POS, receive order-status callbacks,
+  and toggle item stock and store availability.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Restaurant
+- POS
+- Online Ordering
+- Menu
+- Food Delivery
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: petpooja:menu-catalog-api
+  name: Petpooja Menu / Catalog API
+  tags:
+  - Menu
+  - Catalog
+  - Items
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://onlineorderingapisv210.docs.apiary.io/
+  baseURL: https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1
+  properties:
+  - url: https://onlineorderingapisv210.docs.apiary.io/
+    type: Documentation
+  - url: https://onlineorderingapisv210.docs.apiary.io/
+    type: APIReference
+  - url: openapi/petpooja-openapi.yml
+    type: OpenAPI
+  - url: collections/petpooja.postman_collection.json
+    type: PostmanCollection
+  - url: collections/petpooja.opencollection.json
+    type: OpenCollection
+  description: Fetch a mapped restaurant's full menu (categories, items, variations,
+    add-on groups, attributes, taxes, discounts) from Petpooja, and receive Petpooja's
+    Push Menu callback when a restaurant updates its catalog. Authenticated with
+    app-key, app-secret, and access-token; scoped by restID.
+- aid: petpooja:orders-api
+  name: Petpooja Orders API
+  tags:
+  - Orders
+  - Save Order
+  - POS
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://onlineorderingapisv210.docs.apiary.io/
+  baseURL: https://47pfzh5sf2.execute-api.ap-southeast-1.amazonaws.com/V1
+  properties:
+  - url: https://onlineorderingapisv210.docs.apiary.io/
+    type: Documentation
+  - url: https://onlineorderingapisv210.docs.apiary.io/
+    type: APIReference
+  - url: openapi/petpooja-openapi.yml
+    type: OpenAPI
+  - url: collections/petpooja.postman_collection.json
+    type: PostmanCollection
+  - url: collections/petpooja.opencollection.json
+    type: OpenCollection
+  description: Push a new online order (customer, order, order items, taxes, discounts,
+    delivery and packing charges, payment type, prep time, OTP) into the Petpooja
+    POS via save_order. Authenticated with app_key, app_secret, and access_token in
+    the request body.
+- aid: petpooja:stores-api
+  name: Petpooja Stores API
+  tags:
+  - Stores
+  - Restaurant
+  - Availability
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://onlineorderingapisv210.docs.apiary.io/
+  baseURL: https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1
+  properties:
+  - url: https://onlineorderingapisv210.docs.apiary.io/
+    type: Documentation
+  - url: openapi/petpooja-openapi.yml
+    type: OpenAPI
+  - url: collections/petpooja.postman_collection.json
+    type: PostmanCollection
+  - url: collections/petpooja.opencollection.json
+    type: OpenCollection
+  description: Turn a restaurant/store online ordering on or off and set a turn-on
+    time (store availability). Documented via the turn_on_time mechanism; exact
+    endpoint path and request schema are not publicly reconciled.
+- aid: petpooja:stock-availability-api
+  name: Petpooja Stock / Availability API
+  tags:
+  - Stock
+  - Availability
+  - In Stock
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://onlineorderingapisv210.docs.apiary.io/
+  baseURL: https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1
+  properties:
+  - url: https://onlineorderingapisv210.docs.apiary.io/
+    type: Documentation
+  - url: openapi/petpooja-openapi.yml
+    type: OpenAPI
+  - url: collections/petpooja.postman_collection.json
+    type: PostmanCollection
+  - url: collections/petpooja.opencollection.json
+    type: OpenCollection
+  description: Mark menu items in stock or out of stock via the item in_stock flag
+    so partner platforms reflect live availability against Petpooja POS inventory.
+    Exact stock-toggle endpoint path and schema are not publicly reconciled.
+- aid: petpooja:callbacks-api
+  name: Petpooja Callbacks API
+  tags:
+  - Callbacks
+  - Webhooks
+  - Order Status
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://onlineorderingapisv210.docs.apiary.io/
+  baseURL: https://onlineorderingapisv210.docs.apiary.io
+  properties:
+  - url: https://onlineorderingapisv210.docs.apiary.io/
+    type: Documentation
+  - url: openapi/petpooja-openapi.yml
+    type: OpenAPI
+  - url: collections/petpooja.postman_collection.json
+    type: PostmanCollection
+  - url: collections/petpooja.opencollection.json
+    type: OpenCollection
+  description: Partner-hosted endpoints that Petpooja calls. The order callback_url
+    receives order-status updates (e.g., Accept / Reject / Food Ready), and the Push
+    Menu endpoint receives full menu payloads when a restaurant updates its catalog.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/petpooja
+- type: Website
+  url: https://www.petpooja.com
+- type: Documentation
+  url: https://onlineorderingapisv210.docs.apiary.io/
+- type: Plans
+  url: plans/petpooja-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/petpooja-rate-limits.yml
+- type: FinOps
+  url: finops/petpooja-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

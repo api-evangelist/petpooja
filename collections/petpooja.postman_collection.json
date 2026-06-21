@@ -1,0 +1,417 @@
+{
+  "item": [
+    {
+      "id": "a1f0c2d3-1111-4a01-9c01-petpooja000001",
+      "name": "Menu",
+      "description": {
+        "content": "Fetch a mapped restaurant's menu / catalog from Petpooja.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1f0c2d3-1111-4a01-9c01-petpooja000002",
+          "name": "Fetch a mapped restaurant's menu / catalog.",
+          "request": {
+            "name": "Fetch a mapped restaurant's menu / catalog.",
+            "description": {
+              "content": "Returns the full catalog for a mapped restaurant: restaurant details, order types, categories, items, variations, add-on groups, attributes, taxes, and discounts. Scoped by restID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1/mapped_restaurant_menus",
+              "protocol": "https",
+              "host": [
+                "qle1yy2ydc",
+                "execute-api",
+                "ap-southeast-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "mapped_restaurant_menus"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "app-key",
+                "value": "{{app_key}}"
+              },
+              {
+                "key": "app-secret",
+                "value": "{{app_secret}}"
+              },
+              {
+                "key": "access-token",
+                "value": "{{access_token}}"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"restID\": \"{{restID}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1f0c2d3-1111-4a01-9c01-petpooja000003",
+      "name": "Orders",
+      "description": {
+        "content": "Push online orders into the Petpooja POS.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1f0c2d3-1111-4a01-9c01-petpooja000004",
+          "name": "Push a new order into the Petpooja POS.",
+          "request": {
+            "name": "Push a new order into the Petpooja POS.",
+            "description": {
+              "content": "Submits a new online order to the Petpooja POS. Carries app_key, app_secret, and access_token in the body alongside an orderinfo object. May include a callback_url for order-status updates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "https://47pfzh5sf2.execute-api.ap-southeast-1.amazonaws.com/V1/save_order",
+              "protocol": "https",
+              "host": [
+                "47pfzh5sf2",
+                "execute-api",
+                "ap-southeast-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "save_order"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"app_key\": \"{{app_key}}\",\n  \"app_secret\": \"{{app_secret}}\",\n  \"access_token\": \"{{access_token}}\",\n  \"orderinfo\": {\n    \"OrderInfo\": {\n      \"Restaurant\": {\n        \"details\": {\n          \"restID\": \"{{restID}}\"\n        }\n      },\n      \"Customer\": {\n        \"details\": {}\n      },\n      \"Order\": {\n        \"details\": {\n          \"orderID\": \"\",\n          \"payment_type\": \"COD\",\n          \"total\": \"\",\n          \"callback_url\": \"{{callback_url}}\"\n        }\n      },\n      \"OrderItem\": {\n        \"details\": []\n      },\n      \"Tax\": {\n        \"details\": []\n      },\n      \"Discount\": {\n        \"details\": []\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1f0c2d3-1111-4a01-9c01-petpooja000005",
+      "name": "Stores",
+      "description": {
+        "content": "Store / restaurant online-ordering availability. Endpoint path unreconciled.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1f0c2d3-1111-4a01-9c01-petpooja000006",
+          "name": "Turn a store's online ordering on or off (availability).",
+          "request": {
+            "name": "Turn a store's online ordering on or off (availability).",
+            "description": {
+              "content": "Toggles a store's online ordering availability and optionally sets a turn_on_time. Exact endpoint path and schema are not fully published (unreconciled).",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1/update_store_status",
+              "protocol": "https",
+              "host": [
+                "qle1yy2ydc",
+                "execute-api",
+                "ap-southeast-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "update_store_status"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "app-key",
+                "value": "{{app_key}}"
+              },
+              {
+                "key": "app-secret",
+                "value": "{{app_secret}}"
+              },
+              {
+                "key": "access-token",
+                "value": "{{access_token}}"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"restID\": \"{{restID}}\",\n  \"store_status\": \"1\",\n  \"turn_on_time\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1f0c2d3-1111-4a01-9c01-petpooja000007",
+      "name": "Stock",
+      "description": {
+        "content": "Item stock and availability. Endpoint path unreconciled.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1f0c2d3-1111-4a01-9c01-petpooja000008",
+          "name": "Mark menu items in stock or out of stock.",
+          "request": {
+            "name": "Mark menu items in stock or out of stock.",
+            "description": {
+              "content": "Sets the in_stock flag for one or more menu items. Exact endpoint path and schema are not fully published (unreconciled).",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1/update_item_stock",
+              "protocol": "https",
+              "host": [
+                "qle1yy2ydc",
+                "execute-api",
+                "ap-southeast-1",
+                "amazonaws",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "update_item_stock"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "app-key",
+                "value": "{{app_key}}"
+              },
+              {
+                "key": "app-secret",
+                "value": "{{app_secret}}"
+              },
+              {
+                "key": "access-token",
+                "value": "{{access_token}}"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"restID\": \"{{restID}}\",\n  \"type\": \"item\",\n  \"inStock\": true,\n  \"itemID\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1f0c2d3-1111-4a01-9c01-petpooja000009",
+      "name": "Callbacks",
+      "description": {
+        "content": "Partner-hosted endpoints that Petpooja calls.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1f0c2d3-1111-4a01-9c01-petpooja000010",
+          "name": "Order status callback (partner-hosted).",
+          "request": {
+            "name": "Order status callback (partner-hosted).",
+            "description": {
+              "content": "Petpooja POSTs order-status updates (e.g., Accept / Reject / Food Ready) to the partner-supplied callback_url provided on the order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{callback_url}}",
+              "host": [
+                "{{callback_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"restID\": \"{{restID}}\",\n  \"orderID\": \"\",\n  \"status\": \"Accept\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0c2d3-1111-4a01-9c01-petpooja000011",
+          "name": "Push Menu callback (partner-hosted).",
+          "request": {
+            "name": "Push Menu callback (partner-hosted).",
+            "description": {
+              "content": "Petpooja POSTs the full menu payload to the partner-hosted Push Menu endpoint when a restaurant updates its catalog.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "{{push_menu_url}}",
+              "host": [
+                "{{push_menu_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "",
+      "key": "app_key"
+    },
+    {
+      "type": "string",
+      "value": "",
+      "key": "app_secret"
+    },
+    {
+      "type": "string",
+      "value": "",
+      "key": "access_token"
+    },
+    {
+      "type": "string",
+      "value": "",
+      "key": "restID"
+    },
+    {
+      "type": "string",
+      "value": "",
+      "key": "callback_url"
+    },
+    {
+      "type": "string",
+      "value": "",
+      "key": "push_menu_url"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "access-token"
+      },
+      {
+        "key": "value",
+        "value": "{{access_token}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "petpooja-5351-e0d3-d283-online-ordering",
+    "name": "Petpooja Online Ordering API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Petpooja Online Ordering API (V2.1.0). Fetch a mapped restaurant's menu, push orders into the POS, and receive order-status / Push Menu callbacks. Authentication uses app key, app secret, access token, and restaurant ID issued by Petpooja.\n\nContact Support:\n Name: Petpooja Support\n Email: support@petpooja.com",
+      "type": "text/plain"
+    }
+  }
+}

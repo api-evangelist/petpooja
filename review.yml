@@ -1,0 +1,72 @@
+aid: petpooja
+name: Petpooja
+review:
+  question: Does Petpooja expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Per API Evangelist scope, HTTP Server-Sent Events (SSE) is in-scope for
+    AsyncAPI modeling and WebSocket would be. Petpooja's Online Ordering API
+    documents neither SSE nor WebSocket. Its asynchronous/event behavior is
+    delivered via HTTP callbacks (webhooks): Petpooja POSTs order-status
+    updates to a partner-supplied callback_url and POSTs full menu payloads to
+    a partner Push Menu endpoint. Standard request/response HTTP callbacks are
+    not modeled in AsyncAPI here, so no AsyncAPI document was created.
+findings:
+  summary: |
+    Petpooja does not publish a documented public WebSocket API. The Online
+    Ordering API (V2.1.0) is a REST (HTTPS) integration fronted by AWS API
+    Gateway in ap-southeast-1. Integrators fetch a mapped restaurant's menu and
+    push orders over REST, and Petpooja delivers asynchronous updates by calling
+    partner-hosted HTTP callback endpoints (order status via callback_url, and a
+    Push Menu endpoint for catalog updates). No realtime, bidirectional, or
+    streaming WebSocket (ws:// or wss://) endpoint is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1
+      documented: true
+    - protocol: REST
+      scheme: https
+      baseURL: https://47pfzh5sf2.execute-api.ap-southeast-1.amazonaws.com/V1
+      documented: true
+    - protocol: Webhook
+      scheme: https
+      note: Petpooja calls partner-hosted HTTP callback URLs (order status callback_url, Push Menu endpoint). Outbound HTTP POST, not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Petpooja's Online Ordering API material as of the review date.
+  endpointsConfirmedRest:
+    - POST https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1/mapped_restaurant_menus
+    - POST https://47pfzh5sf2.execute-api.ap-southeast-1.amazonaws.com/V1/save_order
+  endpointsReferencedNotReconciled:
+    - Item stock in/out toggle (in_stock) — exact path/schema not publicly published
+    - Store on/off availability (turn_on_time) — exact path/schema not publicly published
+    - Push Menu callback (partner-hosted endpoint) — receives full menu payload
+    - Order status callback (partner-hosted callback_url) — receives Accept / Reject / Food Ready
+  auth:
+    note: app key, app secret, access token, and restaurant ID (restID) issued by Petpooja. Menu calls send app-key/app-secret/access-token as headers; save_order sends app_key/app_secret/access_token in the body.
+    documented: true
+sources:
+  - url: https://onlineorderingapisv210.docs.apiary.io/
+    type: APIReference
+    note: Petpooja Online Ordering APIs V2.1.0; documents fetch menu, save_order, callback_url, Push Menu, in_stock, turn_on_time. All HTTPS REST/callbacks; no WebSocket.
+  - url: https://help.jungleworks.com/yelo/petpooja-integration/
+    type: Documentation
+    note: Integration guide confirming category/product sync, order push, and status updates; credentials are app key, app secret, access token, restaurant ID.
+  - url: https://www.petpooja.com/poss/online-order-management-software
+    type: Documentation
+    note: Product page; describes menu management, stock toggling, and online order management. No WebSocket surface mentioned.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists, and the asynchronous surface is
+    ordinary HTTP callbacks rather than SSE or WebSocket, so no AsyncAPI
+    document was authored. The REST endpoints and HTTP callbacks are captured
+    in openapi/petpooja-openapi.yml and apis.yml; endpoints whose exact paths
+    are not publicly published are marked unreconciled rather than fabricated.

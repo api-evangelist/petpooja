@@ -1,0 +1,102 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Petpooja
+providerId: petpooja
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Restaurant
+- POS
+- Online Ordering
+- Menu
+- Food Delivery
+- Plans
+description: >-
+  Petpooja is sold as a subscription restaurant POS and management platform
+  through a sales-led model, with plans and add-on modules quoted per outlet by
+  the Petpooja sales team rather than published as fixed self-serve pricing. The
+  Online Ordering API is provided as an integration capability of the platform;
+  API access credentials (app key, app secret, access token, restaurant ID) are
+  issued on request to partners and restaurants. No public, machine-readable
+  per-call API price list is published, so plan entries here are not reconciled.
+notes: >-
+  Pricing is sales-led and not publicly posted as fixed tiers; obtain a current
+  quote from Petpooja sales and API credentials via support@petpooja.com.
+  Reconcile this artifact against a real quote and the live product pages.
+sources:
+- https://www.petpooja.com
+- https://www.petpooja.com/poss
+- https://onlineorderingapisv210.docs.apiary.io/
+plans:
+- id: petpooja-pos-subscription
+  name: Petpooja POS Subscription
+  type: subscription
+  description: >-
+    Per-outlet subscription to the Petpooja restaurant POS and management
+    platform. Specific price is quoted by sales and not publicly fixed.
+  entries:
+  - label: POS Subscription
+    name: pos_subscription
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Billing and POS
+  - name: Menu Management
+  - name: Online Order Management
+  - name: Inventory and Stock
+- id: petpooja-online-ordering-api
+  name: Online Ordering API Integration
+  type: subscription
+  description: >-
+    Online Ordering API access for partner platforms and aggregators to sync
+    menus, push orders, receive status callbacks, and reflect stock/availability.
+    Provided as a platform integration capability; pricing not publicly fixed.
+  entries:
+  - label: API Integration
+    name: api_integration
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales / support
+    userMultiplied: false
+  elements:
+  - name: Menu / Catalog Sync
+  - name: Save Order
+  - name: Order Status Callbacks
+  - name: Stock and Store Availability
+- id: petpooja-addons
+  name: Add-on Modules
+  type: subscription
+  description: >-
+    Optional modules and marketplace integrations (e.g., online ordering,
+    scan-and-order, websites, aggregator integrations) added per outlet. Quoted
+    by sales.
+  entries:
+  - label: Add-on Module
+    name: addon_module
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Aggregator Integrations
+  - name: Scan and Order
+  - name: Restaurant Website
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

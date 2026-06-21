@@ -1,0 +1,58 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Petpooja
+providerId: petpooja
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Restaurant
+- POS
+- Online Ordering
+- Menu
+- Food Delivery
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Petpooja does not publish explicit numeric rate limits for its Online Ordering
+  API. The API is partner-/restaurant-scoped via app key, app secret, access
+  token, and restaurant ID, and is fronted by AWS API Gateway (ap-southeast-1),
+  which typically enforces account- and stage-level throttling. Practical limits
+  are governed by per-integration credentials and operational load rather than a
+  documented public quota. Specific values are not reconciled in this artifact.
+notes: >-
+  No public rate-limit table is documented. Confirm any throttling, burst, and
+  retry guidance directly with Petpooja during integration onboarding.
+sources:
+- https://onlineorderingapisv210.docs.apiary.io/
+- https://www.petpooja.com
+responseCodes:
+  throttled: 429
+limits:
+- name: API Requests
+  scope: integration
+  metric: requests
+  limit: see provider documentation
+  notes: No public numeric per-minute/per-day request limit is documented for the Online Ordering API.
+- name: Menu Fetch
+  scope: restaurant
+  metric: requests
+  limit: see provider documentation
+  notes: Menu/catalog fetch is scoped per restID; no documented public quota.
+- name: Save Order
+  scope: restaurant
+  metric: requests
+  limit: see provider documentation
+  notes: Order push is scoped per restaurant credentials; no documented public quota.
+policies:
+- name: Credential Scoping
+  description: Access is gated by app key, app secret, access token, and restaurant ID issued by Petpooja per integration.
+- name: Gateway Throttling
+  description: Requests transit AWS API Gateway, which applies platform-level throttling; specific limits are not published.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
