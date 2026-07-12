@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/petpooja-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: PetpoojaAuthHeaders
+  type: apiKey
+  in: header
+  parameter: access-token
+  description: Petpooja issues an app-key, app-secret, and access-token per integration and
+    a restID per mapped restaurant. Menu/restaurant calls send app-key, app-secret, and access-token
+    as request headers; the save_order call sends app_key, app_secret, and access_token in the
+    request body. Credentials are obtained by emailing support@petpooja.com.
+  sources:
+  - openapi/petpooja-openapi.yml
