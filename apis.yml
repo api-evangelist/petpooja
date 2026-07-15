@@ -130,6 +130,8 @@ apis:
     receives order-status updates (e.g., Accept / Reject / Food Ready), and the Push
     Menu endpoint receives full menu payloads when a restaurant updates its catalog.
 common:
+- type: AgenticAccess
+  url: agentic-access/petpooja-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/petpooja-vulnerability-disclosure.yml
 - type: DomainSecurity
