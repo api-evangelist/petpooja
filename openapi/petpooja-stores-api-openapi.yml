@@ -1,0 +1,75 @@
+openapi: 3.0.1
+info:
+  title: Petpooja Online Ordering Menu Stores API
+  description: 'The Petpooja Online Ordering API (V2.1.0) lets partner ordering platforms and aggregators integrate with the Petpooja restaurant POS. Documented capabilities include fetching a mapped restaurant''s menu/catalog, pushing online orders into the POS (save_order), receiving order-status updates on a partner callback_url, receiving full menu payloads via a partner Push Menu endpoint, and reflecting item stock and store availability. Authentication uses an app key, app secret, and access token issued by Petpooja, scoped to a restaurant (restID).
+
+
+    Some endpoint paths for item stock toggling and store on/off are referenced in Petpooja''s integration material but are not fully published; where the exact path or schema is not publicly reconciled this specification documents the behavior and marks it accordingly rather than fabricating details.'
+  termsOfService: https://www.petpooja.com
+  contact:
+    name: Petpooja Support
+    email: support@petpooja.com
+    url: https://www.petpooja.com
+  version: 2.1.0
+servers:
+- url: https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1
+  description: Petpooja menu / restaurant API (AWS API Gateway, ap-southeast-1)
+- url: https://47pfzh5sf2.execute-api.ap-southeast-1.amazonaws.com/V1
+  description: Petpooja order API (AWS API Gateway, ap-southeast-1)
+security:
+- PetpoojaAuthHeaders: []
+tags:
+- name: Stores
+  description: Store / restaurant online-ordering availability.
+paths:
+  /update_store_status:
+    post:
+      operationId: updateStoreStatus
+      tags:
+      - Stores
+      summary: Turn a store's online ordering on or off (availability).
+      description: Toggles a restaurant/store's online ordering availability and optionally sets a turn_on_time after which ordering resumes. The exact endpoint path and request schema are referenced in Petpooja integration material but are not fully published; this operation documents the known turn_on_time behavior. Treat the path and schema as unreconciled.
+      security:
+      - PetpoojaAuthHeaders: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StoreStatusRequest'
+      responses:
+        '200':
+          description: Store status updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+components:
+  schemas:
+    StoreStatusRequest:
+      type: object
+      description: Unreconciled. Documents the known turn_on / turn_off behavior for store availability.
+      properties:
+        restID:
+          type: string
+        store_status:
+          type: string
+          description: Desired store status (e.g., "1" on / "0" off).
+        turn_on_time:
+          type: string
+          description: Time after which online ordering resumes.
+        reason:
+          type: string
+    GenericResponse:
+      type: object
+      properties:
+        success:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    PetpoojaAuthHeaders:
+      type: apiKey
+      in: header
+      name: access-token
+      description: Petpooja issues an app-key, app-secret, and access-token per integration and a restID per mapped restaurant. Menu/restaurant calls send app-key, app-secret, and access-token as request headers; the save_order call sends app_key, app_secret, and access_token in the request body. Credentials are obtained by emailing support@petpooja.com.

@@ -1,0 +1,167 @@
+openapi: 3.0.1
+info:
+  title: Petpooja Online Ordering Menu API
+  description: 'The Petpooja Online Ordering API (V2.1.0) lets partner ordering platforms and aggregators integrate with the Petpooja restaurant POS. Documented capabilities include fetching a mapped restaurant''s menu/catalog, pushing online orders into the POS (save_order), receiving order-status updates on a partner callback_url, receiving full menu payloads via a partner Push Menu endpoint, and reflecting item stock and store availability. Authentication uses an app key, app secret, and access token issued by Petpooja, scoped to a restaurant (restID).
+
+
+    Some endpoint paths for item stock toggling and store on/off are referenced in Petpooja''s integration material but are not fully published; where the exact path or schema is not publicly reconciled this specification documents the behavior and marks it accordingly rather than fabricating details.'
+  termsOfService: https://www.petpooja.com
+  contact:
+    name: Petpooja Support
+    email: support@petpooja.com
+    url: https://www.petpooja.com
+  version: 2.1.0
+servers:
+- url: https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1
+  description: Petpooja menu / restaurant API (AWS API Gateway, ap-southeast-1)
+- url: https://47pfzh5sf2.execute-api.ap-southeast-1.amazonaws.com/V1
+  description: Petpooja order API (AWS API Gateway, ap-southeast-1)
+security:
+- PetpoojaAuthHeaders: []
+tags:
+- name: Menu
+  description: Fetch a mapped restaurant's menu / catalog from Petpooja.
+paths:
+  /mapped_restaurant_menus:
+    post:
+      operationId: fetchMappedRestaurantMenu
+      tags:
+      - Menu
+      summary: Fetch a mapped restaurant's menu / catalog.
+      description: 'Returns the full catalog for a mapped restaurant: restaurant details, order types, categories and parent categories, items, variations, add-on groups, attributes, taxes, and discounts. Authenticated with the app-key, app-secret, and access-token headers and scoped by restID.'
+      security:
+      - PetpoojaAuthHeaders: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FetchMenuRequest'
+      responses:
+        '200':
+          description: Menu payload for the mapped restaurant.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuResponse'
+components:
+  schemas:
+    Restaurant:
+      type: object
+      properties:
+        restaurantid:
+          type: string
+        active:
+          type: string
+        menusharingcode:
+          type: string
+          description: Menu Sharing Code identifying the restaurant's shared menu.
+        currency_html:
+          type: string
+        country:
+          type: string
+        city:
+          type: string
+        minimumorderamount:
+          type: string
+        minimumdeliverytime:
+          type: string
+        deliverycharge:
+          type: string
+        packaging_charge:
+          type: string
+    FetchMenuRequest:
+      type: object
+      required:
+      - restID
+      properties:
+        restID:
+          type: string
+          description: Petpooja restaurant identifier for the mapped restaurant.
+    MenuResponse:
+      type: object
+      description: Full catalog payload for a mapped restaurant.
+      properties:
+        success:
+          type: string
+          description: Success flag returned by Petpooja (e.g., "1").
+        message:
+          type: string
+        restaurants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Restaurant'
+        ordertypes:
+          type: array
+          items:
+            type: object
+        categories:
+          type: array
+          items:
+            type: object
+        parentcategories:
+          type: array
+          items:
+            type: object
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItem'
+        variations:
+          type: array
+          items:
+            type: object
+        addongroups:
+          type: array
+          items:
+            type: object
+        attributes:
+          type: array
+          items:
+            type: object
+        taxes:
+          type: array
+          items:
+            type: object
+        discounts:
+          type: array
+          items:
+            type: object
+    MenuItem:
+      type: object
+      properties:
+        itemid:
+          type: string
+        itemname:
+          type: string
+        itemcategoryid:
+          type: string
+        price:
+          type: string
+        in_stock:
+          type: string
+          description: Item availability flag (in stock / out of stock).
+        itemallowvariation:
+          type: string
+        variation:
+          type: array
+          items:
+            type: object
+        addon:
+          type: array
+          items:
+            type: object
+        item_tax:
+          type: string
+        is_combo:
+          type: string
+        combo_items:
+          type: array
+          items:
+            type: object
+  securitySchemes:
+    PetpoojaAuthHeaders:
+      type: apiKey
+      in: header
+      name: access-token
+      description: Petpooja issues an app-key, app-secret, and access-token per integration and a restID per mapped restaurant. Menu/restaurant calls send app-key, app-secret, and access-token as request headers; the save_order call sends app_key, app_secret, and access_token in the request body. Credentials are obtained by emailing support@petpooja.com.

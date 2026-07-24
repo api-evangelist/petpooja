@@ -1,0 +1,79 @@
+openapi: 3.0.1
+info:
+  title: Petpooja Online Ordering Menu Stock API
+  description: 'The Petpooja Online Ordering API (V2.1.0) lets partner ordering platforms and aggregators integrate with the Petpooja restaurant POS. Documented capabilities include fetching a mapped restaurant''s menu/catalog, pushing online orders into the POS (save_order), receiving order-status updates on a partner callback_url, receiving full menu payloads via a partner Push Menu endpoint, and reflecting item stock and store availability. Authentication uses an app key, app secret, and access token issued by Petpooja, scoped to a restaurant (restID).
+
+
+    Some endpoint paths for item stock toggling and store on/off are referenced in Petpooja''s integration material but are not fully published; where the exact path or schema is not publicly reconciled this specification documents the behavior and marks it accordingly rather than fabricating details.'
+  termsOfService: https://www.petpooja.com
+  contact:
+    name: Petpooja Support
+    email: support@petpooja.com
+    url: https://www.petpooja.com
+  version: 2.1.0
+servers:
+- url: https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1
+  description: Petpooja menu / restaurant API (AWS API Gateway, ap-southeast-1)
+- url: https://47pfzh5sf2.execute-api.ap-southeast-1.amazonaws.com/V1
+  description: Petpooja order API (AWS API Gateway, ap-southeast-1)
+security:
+- PetpoojaAuthHeaders: []
+tags:
+- name: Stock
+  description: Item stock and availability.
+paths:
+  /update_item_stock:
+    post:
+      operationId: updateItemStock
+      tags:
+      - Stock
+      summary: Mark menu items in stock or out of stock.
+      description: Sets the in_stock flag for one or more menu items so partner platforms reflect live availability against Petpooja POS inventory. The exact endpoint path and request schema are not fully published; this operation documents the known in_stock behavior. Treat the path and schema as unreconciled.
+      security:
+      - PetpoojaAuthHeaders: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemStockRequest'
+      responses:
+        '200':
+          description: Item stock updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+components:
+  schemas:
+    ItemStockRequest:
+      type: object
+      description: Unreconciled. Documents the known in_stock toggle behavior for items.
+      properties:
+        restID:
+          type: string
+        type:
+          type: string
+          description: Entity type being toggled (e.g., item).
+        inStock:
+          type: boolean
+          description: Whether the listed entities are in stock.
+        itemID:
+          type: array
+          items:
+            type: string
+        autoTurnOnTime:
+          type: string
+    GenericResponse:
+      type: object
+      properties:
+        success:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    PetpoojaAuthHeaders:
+      type: apiKey
+      in: header
+      name: access-token
+      description: Petpooja issues an app-key, app-secret, and access-token per integration and a restID per mapped restaurant. Menu/restaurant calls send app-key, app-secret, and access-token as request headers; the save_order call sends app_key, app_secret, and access_token in the request body. Credentials are obtained by emailing support@petpooja.com.

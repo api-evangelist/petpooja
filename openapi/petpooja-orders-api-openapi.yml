@@ -1,0 +1,243 @@
+openapi: 3.0.1
+info:
+  title: Petpooja Online Ordering Menu Orders API
+  description: 'The Petpooja Online Ordering API (V2.1.0) lets partner ordering platforms and aggregators integrate with the Petpooja restaurant POS. Documented capabilities include fetching a mapped restaurant''s menu/catalog, pushing online orders into the POS (save_order), receiving order-status updates on a partner callback_url, receiving full menu payloads via a partner Push Menu endpoint, and reflecting item stock and store availability. Authentication uses an app key, app secret, and access token issued by Petpooja, scoped to a restaurant (restID).
+
+
+    Some endpoint paths for item stock toggling and store on/off are referenced in Petpooja''s integration material but are not fully published; where the exact path or schema is not publicly reconciled this specification documents the behavior and marks it accordingly rather than fabricating details.'
+  termsOfService: https://www.petpooja.com
+  contact:
+    name: Petpooja Support
+    email: support@petpooja.com
+    url: https://www.petpooja.com
+  version: 2.1.0
+servers:
+- url: https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1
+  description: Petpooja menu / restaurant API (AWS API Gateway, ap-southeast-1)
+- url: https://47pfzh5sf2.execute-api.ap-southeast-1.amazonaws.com/V1
+  description: Petpooja order API (AWS API Gateway, ap-southeast-1)
+security:
+- PetpoojaAuthHeaders: []
+tags:
+- name: Orders
+  description: Push online orders into the Petpooja POS.
+paths:
+  /save_order:
+    servers:
+    - url: https://47pfzh5sf2.execute-api.ap-southeast-1.amazonaws.com/V1
+    post:
+      operationId: saveOrder
+      tags:
+      - Orders
+      summary: Push a new order into the Petpooja POS.
+      description: Submits a new online order to the Petpooja POS. The request carries app_key, app_secret, and access_token in the body alongside an orderinfo object describing the restaurant, customer, order, order items, taxes, and discounts. The order may include a callback_url to which Petpooja posts subsequent order-status updates.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveOrderRequest'
+      responses:
+        '200':
+          description: Order accepted by the Petpooja POS.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaveOrderResponse'
+components:
+  schemas:
+    OrderRestaurant:
+      type: object
+      properties:
+        details:
+          type: object
+          properties:
+            res_name:
+              type: string
+            address:
+              type: string
+            contact_information:
+              type: string
+            restID:
+              type: string
+              description: Petpooja restaurant identifier.
+    OrderItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        gst_liability:
+          type: string
+        item_tax:
+          type: array
+          items:
+            type: object
+        item_discount:
+          type: string
+        price:
+          type: string
+        final_price:
+          type: string
+        quantity:
+          type: string
+        description:
+          type: string
+        variation_name:
+          type: string
+        variation_id:
+          type: string
+        AddonItem:
+          type: object
+          properties:
+            details:
+              type: array
+              items:
+                type: object
+    Order:
+      type: object
+      properties:
+        details:
+          type: object
+          properties:
+            orderID:
+              type: string
+            preorder_date:
+              type: string
+            preorder_time:
+              type: string
+            service_charge:
+              type: string
+            delivery_charges:
+              type: string
+            dc_tax_percentage:
+              type: string
+            dc_tax_amount:
+              type: string
+            packing_charges:
+              type: string
+            pc_tax_percentage:
+              type: string
+            pc_tax_amount:
+              type: string
+            order_type:
+              type: string
+            ondc_bap:
+              type: string
+            advanced_order:
+              type: string
+            payment_type:
+              type: string
+            table_no:
+              type: string
+            no_of_persons:
+              type: string
+            discount_total:
+              type: string
+            tax_total:
+              type: string
+            total:
+              type: string
+            description:
+              type: string
+            created_on:
+              type: string
+            enable_delivery:
+              type: string
+            min_prep_time:
+              type: string
+            callback_url:
+              type: string
+              description: Partner URL Petpooja calls with order-status updates (Accept / Reject / Food Ready, etc.).
+            collect_cash:
+              type: string
+            otp:
+              type: string
+            urgent_order:
+              type: boolean
+            urgent_time:
+              type: integer
+    Customer:
+      type: object
+      properties:
+        details:
+          type: object
+          properties:
+            email:
+              type: string
+            name:
+              type: string
+            address:
+              type: string
+            phone:
+              type: string
+            latitude:
+              type: string
+            longitude:
+              type: string
+    SaveOrderRequest:
+      type: object
+      required:
+      - app_key
+      - app_secret
+      - access_token
+      - orderinfo
+      properties:
+        app_key:
+          type: string
+        app_secret:
+          type: string
+        access_token:
+          type: string
+        orderinfo:
+          $ref: '#/components/schemas/OrderInfo'
+        udid:
+          type: string
+        device_type:
+          type: string
+    OrderInfo:
+      type: object
+      properties:
+        OrderInfo:
+          type: object
+          properties:
+            Restaurant:
+              $ref: '#/components/schemas/OrderRestaurant'
+            Customer:
+              $ref: '#/components/schemas/Customer'
+            Order:
+              $ref: '#/components/schemas/Order'
+            OrderItem:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderItem'
+            Tax:
+              type: array
+              items:
+                type: object
+            Discount:
+              type: array
+              items:
+                type: object
+    SaveOrderResponse:
+      type: object
+      properties:
+        success:
+          type: string
+          description: Success flag (e.g., "1").
+        message:
+          type: string
+        restID:
+          type: string
+        clientOrderID:
+          type: string
+        orderID:
+          type: string
+          description: Petpooja-assigned order identifier.
+  securitySchemes:
+    PetpoojaAuthHeaders:
+      type: apiKey
+      in: header
+      name: access-token
+      description: Petpooja issues an app-key, app-secret, and access-token per integration and a restID per mapped restaurant. Menu/restaurant calls send app-key, app-secret, and access-token as request headers; the save_order call sends app_key, app_secret, and access_token in the request body. Credentials are obtained by emailing support@petpooja.com.
