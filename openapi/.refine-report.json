@@ -1,0 +1,20 @@
+{
+  "provider": "petpooja",
+  "sources": [
+    "petpooja-menu-api-openapi.yml",
+    "petpooja-orders-api-openapi.yml",
+    "petpooja-stock-api-openapi.yml",
+    "petpooja-stores-api-openapi.yml"
+  ],
+  "outputs": [
+    "petpooja-menu-api-openapi.yml",
+    "petpooja-orders-api-openapi.yml",
+    "petpooja-stock-api-openapi.yml",
+    "petpooja-stores-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
