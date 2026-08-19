@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Petpooja Online Ordering Menu Stock API",
+    "version": "2.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access-token",
+      "value": "{{access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stock",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mark menu items in stock or out of stock.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1/update_item_stock",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "access-token",
+              "value": "{{access-token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Sets the in_stock flag for one or more menu items so partner platforms reflect live availability against Petpooja POS inventory. The exact endpoint path and request schema are not fully published; this operation documents the known in_stock behavior. Treat the path and schema as unreconciled."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

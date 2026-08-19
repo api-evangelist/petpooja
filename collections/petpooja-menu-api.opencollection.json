@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Petpooja Online Ordering Menu API",
+    "version": "2.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access-token",
+      "value": "{{access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Menu",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch a mapped restaurant's menu / catalog.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1/mapped_restaurant_menus",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "access-token",
+              "value": "{{access-token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the full catalog for a mapped restaurant: restaurant details, order types, categories and parent categories, items, variations, add-on groups, attributes, taxes, and discounts. Authenticated with the app-key, app-secret, and access-token headers and scoped by restID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

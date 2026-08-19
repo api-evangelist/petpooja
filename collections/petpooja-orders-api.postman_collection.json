@@ -1,0 +1,153 @@
+{
+  "item": [
+    {
+      "id": "90bc5561-8e06-436d-9d5c-a2d6db92c802",
+      "name": "Orders",
+      "description": {
+        "content": "Push online orders into the Petpooja POS.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c7826888-317d-458d-a10a-b1ea8b79a4b5",
+          "name": "Push a new order into the Petpooja POS.",
+          "request": {
+            "name": "Push a new order into the Petpooja POS.",
+            "description": {
+              "content": "Submits a new online order to the Petpooja POS. The request carries app_key, app_secret, and access_token in the body alongside an orderinfo object describing the restaurant, customer, order, order items, taxes, and discounts. The order may include a callback_url to which Petpooja posts subsequent order-status updates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "save_order"
+              ],
+              "host": [
+                "{{save_order-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"app_key\": \"<string>\",\n  \"app_secret\": \"<string>\",\n  \"access_token\": \"<string>\",\n  \"orderinfo\": {\n    \"OrderInfo\": {\n      \"Restaurant\": {\n        \"details\": {\n          \"res_name\": \"<string>\",\n          \"address\": \"<string>\",\n          \"contact_information\": \"<string>\",\n          \"restID\": \"<string>\"\n        }\n      },\n      \"Customer\": {\n        \"details\": {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"address\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"latitude\": \"<string>\",\n          \"longitude\": \"<string>\"\n        }\n      },\n      \"Order\": {\n        \"details\": {\n          \"orderID\": \"<string>\",\n          \"preorder_date\": \"<string>\",\n          \"preorder_time\": \"<string>\",\n          \"service_charge\": \"<string>\",\n          \"delivery_charges\": \"<string>\",\n          \"dc_tax_percentage\": \"<string>\",\n          \"dc_tax_amount\": \"<string>\",\n          \"packing_charges\": \"<string>\",\n          \"pc_tax_percentage\": \"<string>\",\n          \"pc_tax_amount\": \"<string>\",\n          \"order_type\": \"<string>\",\n          \"ondc_bap\": \"<string>\",\n          \"advanced_order\": \"<string>\",\n          \"payment_type\": \"<string>\",\n          \"table_no\": \"<string>\",\n          \"no_of_persons\": \"<string>\",\n          \"discount_total\": \"<string>\",\n          \"tax_total\": \"<string>\",\n          \"total\": \"<string>\",\n          \"description\": \"<string>\",\n          \"created_on\": \"<string>\",\n          \"enable_delivery\": \"<string>\",\n          \"min_prep_time\": \"<string>\",\n          \"callback_url\": \"<string>\",\n          \"collect_cash\": \"<string>\",\n          \"otp\": \"<string>\",\n          \"urgent_order\": \"<boolean>\",\n          \"urgent_time\": \"<integer>\"\n        }\n      },\n      \"OrderItem\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"gst_liability\": \"<string>\",\n          \"item_tax\": [\n            \"<object>\",\n            \"<object>\"\n          ],\n          \"item_discount\": \"<string>\",\n          \"price\": \"<string>\",\n          \"final_price\": \"<string>\",\n          \"quantity\": \"<string>\",\n          \"description\": \"<string>\",\n          \"variation_name\": \"<string>\",\n          \"variation_id\": \"<string>\",\n          \"AddonItem\": {\n            \"details\": [\n              \"<object>\",\n              \"<object>\"\n            ]\n          }\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"gst_liability\": \"<string>\",\n          \"item_tax\": [\n            \"<object>\",\n            \"<object>\"\n          ],\n          \"item_discount\": \"<string>\",\n          \"price\": \"<string>\",\n          \"final_price\": \"<string>\",\n          \"quantity\": \"<string>\",\n          \"description\": \"<string>\",\n          \"variation_name\": \"<string>\",\n          \"variation_id\": \"<string>\",\n          \"AddonItem\": {\n            \"details\": [\n              \"<object>\",\n              \"<object>\"\n            ]\n          }\n        }\n      ],\n      \"Tax\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"Discount\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    }\n  },\n  \"udid\": \"<string>\",\n  \"device_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "655360cb-221e-4d32-949b-7b089c8970d4",
+              "name": "Order accepted by the Petpooja POS.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "save_order"
+                  ],
+                  "host": [
+                    "{{save_order-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"app_key\": \"<string>\",\n  \"app_secret\": \"<string>\",\n  \"access_token\": \"<string>\",\n  \"orderinfo\": {\n    \"OrderInfo\": {\n      \"Restaurant\": {\n        \"details\": {\n          \"res_name\": \"<string>\",\n          \"address\": \"<string>\",\n          \"contact_information\": \"<string>\",\n          \"restID\": \"<string>\"\n        }\n      },\n      \"Customer\": {\n        \"details\": {\n          \"email\": \"<string>\",\n          \"name\": \"<string>\",\n          \"address\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"latitude\": \"<string>\",\n          \"longitude\": \"<string>\"\n        }\n      },\n      \"Order\": {\n        \"details\": {\n          \"orderID\": \"<string>\",\n          \"preorder_date\": \"<string>\",\n          \"preorder_time\": \"<string>\",\n          \"service_charge\": \"<string>\",\n          \"delivery_charges\": \"<string>\",\n          \"dc_tax_percentage\": \"<string>\",\n          \"dc_tax_amount\": \"<string>\",\n          \"packing_charges\": \"<string>\",\n          \"pc_tax_percentage\": \"<string>\",\n          \"pc_tax_amount\": \"<string>\",\n          \"order_type\": \"<string>\",\n          \"ondc_bap\": \"<string>\",\n          \"advanced_order\": \"<string>\",\n          \"payment_type\": \"<string>\",\n          \"table_no\": \"<string>\",\n          \"no_of_persons\": \"<string>\",\n          \"discount_total\": \"<string>\",\n          \"tax_total\": \"<string>\",\n          \"total\": \"<string>\",\n          \"description\": \"<string>\",\n          \"created_on\": \"<string>\",\n          \"enable_delivery\": \"<string>\",\n          \"min_prep_time\": \"<string>\",\n          \"callback_url\": \"<string>\",\n          \"collect_cash\": \"<string>\",\n          \"otp\": \"<string>\",\n          \"urgent_order\": \"<boolean>\",\n          \"urgent_time\": \"<integer>\"\n        }\n      },\n      \"OrderItem\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"gst_liability\": \"<string>\",\n          \"item_tax\": [\n            \"<object>\",\n            \"<object>\"\n          ],\n          \"item_discount\": \"<string>\",\n          \"price\": \"<string>\",\n          \"final_price\": \"<string>\",\n          \"quantity\": \"<string>\",\n          \"description\": \"<string>\",\n          \"variation_name\": \"<string>\",\n          \"variation_id\": \"<string>\",\n          \"AddonItem\": {\n            \"details\": [\n              \"<object>\",\n              \"<object>\"\n            ]\n          }\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"gst_liability\": \"<string>\",\n          \"item_tax\": [\n            \"<object>\",\n            \"<object>\"\n          ],\n          \"item_discount\": \"<string>\",\n          \"price\": \"<string>\",\n          \"final_price\": \"<string>\",\n          \"quantity\": \"<string>\",\n          \"description\": \"<string>\",\n          \"variation_name\": \"<string>\",\n          \"variation_id\": \"<string>\",\n          \"AddonItem\": {\n            \"details\": [\n              \"<object>\",\n              \"<object>\"\n            ]\n          }\n        }\n      ],\n      \"Tax\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"Discount\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    }\n  },\n  \"udid\": \"<string>\",\n  \"device_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"string\",\n  \"message\": \"string\",\n  \"restID\": \"string\",\n  \"clientOrderID\": \"string\",\n  \"orderID\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://47pfzh5sf2.execute-api.ap-southeast-1.amazonaws.com/V1",
+      "key": "save_order-Url"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "access-token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c017197f-5ce3-4b6d-9f8a-a2b48594f81f",
+    "name": "Petpooja Online Ordering Menu Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Petpooja Online Ordering API (V2.1.0) lets partner ordering platforms and aggregators integrate with the Petpooja restaurant POS. Documented capabilities include fetching a mapped restaurant's menu/catalog, pushing online orders into the POS (save_order), receiving order-status updates on a partner callback_url, receiving full menu payloads via a partner Push Menu endpoint, and reflecting item stock and store availability. Authentication uses an app key, app secret, and access token issued by Petpooja, scoped to a restaurant (restID).\n\nSome endpoint paths for item stock toggling and store on/off are referenced in Petpooja's integration material but are not fully published; where the exact path or schema is not publicly reconciled this specification documents the behavior and marks it accordingly rather than fabricating details.\n\nContact Support:\n Name: Petpooja Support\n Email: support@petpooja.com",
+      "type": "text/plain"
+    }
+  }
+}

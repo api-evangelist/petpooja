@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Petpooja Online Ordering Menu Stores API",
+    "version": "2.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access-token",
+      "value": "{{access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stores",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Turn a store's online ordering on or off (availability).",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1/update_store_status",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "access-token",
+              "value": "{{access-token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Toggles a restaurant/store's online ordering availability and optionally sets a turn_on_time after which ordering resumes. The exact endpoint path and request schema are referenced in Petpooja integration material but are not fully published; this operation documents the known turn_on_time behavior. Treat the path and schema as unreconciled."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Petpooja Online Ordering Menu Orders API",
+    "version": "2.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access-token",
+      "value": "{{access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Push a new order into the Petpooja POS.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1/save_order",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a new online order to the Petpooja POS. The request carries app_key, app_secret, and access_token in the body alongside an orderinfo object describing the restaurant, customer, order, order items, taxes, and discounts. The order may include a callback_url to which Petpooja posts subsequent order-status updates."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

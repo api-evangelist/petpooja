@@ -1,0 +1,164 @@
+{
+  "item": [
+    {
+      "id": "c9dd45de-6f4b-48ad-871e-56a8e5587b5b",
+      "name": "Menu",
+      "description": {
+        "content": "Fetch a mapped restaurant's menu / catalog from Petpooja.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f7fe803a-57d2-4f3c-8ca7-d5a640565660",
+          "name": "Fetch a mapped restaurant's menu / catalog.",
+          "request": {
+            "name": "Fetch a mapped restaurant's menu / catalog.",
+            "description": {
+              "content": "Returns the full catalog for a mapped restaurant: restaurant details, order types, categories and parent categories, items, variations, add-on groups, attributes, taxes, and discounts. Authenticated with the app-key, app-secret, and access-token headers and scoped by restID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mapped_restaurant_menus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "access-token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"restID\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2e2a2774-7533-49a3-b163-2dd9f8add2f1",
+              "name": "Menu payload for the mapped restaurant.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mapped_restaurant_menus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"restID\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"string\",\n  \"message\": \"string\",\n  \"restaurants\": [\n    {\n      \"restaurantid\": \"string\",\n      \"active\": \"string\",\n      \"menusharingcode\": \"string\",\n      \"currency_html\": \"string\",\n      \"country\": \"string\",\n      \"city\": \"string\",\n      \"minimumorderamount\": \"string\",\n      \"minimumdeliverytime\": \"string\",\n      \"deliverycharge\": \"string\",\n      \"packaging_charge\": \"string\"\n    },\n    {\n      \"restaurantid\": \"string\",\n      \"active\": \"string\",\n      \"menusharingcode\": \"string\",\n      \"currency_html\": \"string\",\n      \"country\": \"string\",\n      \"city\": \"string\",\n      \"minimumorderamount\": \"string\",\n      \"minimumdeliverytime\": \"string\",\n      \"deliverycharge\": \"string\",\n      \"packaging_charge\": \"string\"\n    }\n  ],\n  \"items\": [\n    {\n      \"itemid\": \"string\",\n      \"itemname\": \"string\",\n      \"itemcategoryid\": \"string\",\n      \"price\": \"string\",\n      \"in_stock\": \"string\",\n      \"itemallowvariation\": \"string\",\n      \"item_tax\": \"string\",\n      \"is_combo\": \"string\"\n    },\n    {\n      \"itemid\": \"string\",\n      \"itemname\": \"string\",\n      \"itemcategoryid\": \"string\",\n      \"price\": \"string\",\n      \"in_stock\": \"string\",\n      \"itemallowvariation\": \"string\",\n      \"item_tax\": \"string\",\n      \"is_combo\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "access-token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2dd107f1-0a73-4687-8717-71a7a82fbcfb",
+    "name": "Petpooja Online Ordering Menu API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Petpooja Online Ordering API (V2.1.0) lets partner ordering platforms and aggregators integrate with the Petpooja restaurant POS. Documented capabilities include fetching a mapped restaurant's menu/catalog, pushing online orders into the POS (save_order), receiving order-status updates on a partner callback_url, receiving full menu payloads via a partner Push Menu endpoint, and reflecting item stock and store availability. Authentication uses an app key, app secret, and access token issued by Petpooja, scoped to a restaurant (restID).\n\nSome endpoint paths for item stock toggling and store on/off are referenced in Petpooja's integration material but are not fully published; where the exact path or schema is not publicly reconciled this specification documents the behavior and marks it accordingly rather than fabricating details.\n\nContact Support:\n Name: Petpooja Support\n Email: support@petpooja.com",
+      "type": "text/plain"
+    }
+  }
+}

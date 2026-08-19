@@ -1,0 +1,164 @@
+{
+  "item": [
+    {
+      "id": "2e648dcf-b3c9-4add-bbdb-1c46e419b53c",
+      "name": "Stock",
+      "description": {
+        "content": "Item stock and availability.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8cfdb314-9255-4be4-afc5-cddbdd6cf96a",
+          "name": "Mark menu items in stock or out of stock.",
+          "request": {
+            "name": "Mark menu items in stock or out of stock.",
+            "description": {
+              "content": "Sets the in_stock flag for one or more menu items so partner platforms reflect live availability against Petpooja POS inventory. The exact endpoint path and request schema are not fully published; this operation documents the known in_stock behavior. Treat the path and schema as unreconciled.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "update_item_stock"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "access-token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"restID\": \"<string>\",\n  \"type\": \"<string>\",\n  \"inStock\": \"<boolean>\",\n  \"itemID\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"autoTurnOnTime\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "459fa67f-5e7f-4be0-bd01-f576a7943e08",
+              "name": "Item stock updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "update_item_stock"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"restID\": \"<string>\",\n  \"type\": \"<string>\",\n  \"inStock\": \"<boolean>\",\n  \"itemID\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"autoTurnOnTime\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "access-token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6d206e87-601f-47ef-9bec-c01126ead6cc",
+    "name": "Petpooja Online Ordering Menu Stock API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Petpooja Online Ordering API (V2.1.0) lets partner ordering platforms and aggregators integrate with the Petpooja restaurant POS. Documented capabilities include fetching a mapped restaurant's menu/catalog, pushing online orders into the POS (save_order), receiving order-status updates on a partner callback_url, receiving full menu payloads via a partner Push Menu endpoint, and reflecting item stock and store availability. Authentication uses an app key, app secret, and access token issued by Petpooja, scoped to a restaurant (restID).\n\nSome endpoint paths for item stock toggling and store on/off are referenced in Petpooja's integration material but are not fully published; where the exact path or schema is not publicly reconciled this specification documents the behavior and marks it accordingly rather than fabricating details.\n\nContact Support:\n Name: Petpooja Support\n Email: support@petpooja.com",
+      "type": "text/plain"
+    }
+  }
+}
