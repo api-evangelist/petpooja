@@ -23,6 +23,12 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/petpooja.png
 tags:
 - Restaurant
+- Point-of-Sale
+- Online Ordering
+- Menus
+- Food Delivery
+tags_raw:
+- Restaurant
 - POS
 - Online Ordering
 - Menu
@@ -37,6 +43,8 @@ apis:
   humanURL: https://onlineorderingapisv210.docs.apiary.io/
   baseURL: https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1
   tags:
+  - Menus
+  tags_raw:
   - Menu
   properties:
   - type: OpenAPI
@@ -55,6 +63,8 @@ apis:
   humanURL: https://onlineorderingapisv210.docs.apiary.io/
   baseURL: https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
