@@ -95,6 +95,8 @@ apis:
   humanURL: https://onlineorderingapisv210.docs.apiary.io/
   baseURL: https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1
   tags:
+  - Stocks
+  tags_raw:
   - Stock
   properties:
   - type: OpenAPI
