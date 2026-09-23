@@ -1,10 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Petpooja Online Ordering Menu Stores API
-  description: 'The Petpooja Online Ordering API (V2.1.0) lets partner ordering platforms and aggregators integrate with the Petpooja restaurant POS. Documented capabilities include fetching a mapped restaurant''s menu/catalog, pushing online orders into the POS (save_order), receiving order-status updates on a partner callback_url, receiving full menu payloads via a partner Push Menu endpoint, and reflecting item stock and store availability. Authentication uses an app key, app secret, and access token issued by Petpooja, scoped to a restaurant (restID).
-
-
-    Some endpoint paths for item stock toggling and store on/off are referenced in Petpooja''s integration material but are not fully published; where the exact path or schema is not publicly reconciled this specification documents the behavior and marks it accordingly rather than fabricating details.'
+  title: Petpooja Online Ordering Stores API
+  description: The Petpooja Online Ordering API (V2.1.0) lets partner ordering platforms and aggregators integrate with the Petpooja restaurant POS.
   termsOfService: https://www.petpooja.com
   contact:
     name: Petpooja Support
@@ -27,7 +24,7 @@ paths:
       operationId: updateStoreStatus
       tags:
       - Stores
-      summary: Turn a store's online ordering on or off (availability).
+      summary: Turn a store's online ordering on or off (availability)
       description: Toggles a restaurant/store's online ordering availability and optionally sets a turn_on_time after which ordering resumes. The exact endpoint path and request schema are referenced in Petpooja integration material but are not fully published; this operation documents the known turn_on_time behavior. Treat the path and schema as unreconciled.
       security:
       - PetpoojaAuthHeaders: []

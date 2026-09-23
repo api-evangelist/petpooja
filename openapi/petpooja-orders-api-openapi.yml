@@ -1,10 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Petpooja Online Ordering Menu Orders API
-  description: 'The Petpooja Online Ordering API (V2.1.0) lets partner ordering platforms and aggregators integrate with the Petpooja restaurant POS. Documented capabilities include fetching a mapped restaurant''s menu/catalog, pushing online orders into the POS (save_order), receiving order-status updates on a partner callback_url, receiving full menu payloads via a partner Push Menu endpoint, and reflecting item stock and store availability. Authentication uses an app key, app secret, and access token issued by Petpooja, scoped to a restaurant (restID).
-
-
-    Some endpoint paths for item stock toggling and store on/off are referenced in Petpooja''s integration material but are not fully published; where the exact path or schema is not publicly reconciled this specification documents the behavior and marks it accordingly rather than fabricating details.'
+  title: Petpooja Online Ordering Orders API
+  description: The Petpooja Online Ordering API (V2.1.0) lets partner ordering platforms and aggregators integrate with the Petpooja restaurant POS.
   termsOfService: https://www.petpooja.com
   contact:
     name: Petpooja Support
@@ -29,7 +26,7 @@ paths:
       operationId: saveOrder
       tags:
       - Orders
-      summary: Push a new order into the Petpooja POS.
+      summary: Push a new order into the Petpooja POS
       description: Submits a new online order to the Petpooja POS. The request carries app_key, app_secret, and access_token in the body alongside an orderinfo object describing the restaurant, customer, order, order items, taxes, and discounts. The order may include a callback_url to which Petpooja posts subsequent order-status updates.
       requestBody:
         required: true
@@ -61,37 +58,42 @@ components:
             restID:
               type: string
               description: Petpooja restaurant identifier.
-    OrderItem:
+    SaveOrderResponse:
       type: object
       properties:
-        id:
+        success:
           type: string
-        name:
+          description: Success flag (e.g., "1").
+        message:
           type: string
-        gst_liability:
+        restID:
           type: string
-        item_tax:
-          type: array
-          items:
-            type: object
-        item_discount:
+        clientOrderID:
           type: string
-        price:
+        orderID:
           type: string
-        final_price:
-          type: string
-        quantity:
-          type: string
-        description:
-          type: string
-        variation_name:
-          type: string
-        variation_id:
-          type: string
-        AddonItem:
+          description: Petpooja-assigned order identifier.
+    OrderInfo:
+      type: object
+      properties:
+        OrderInfo:
           type: object
           properties:
-            details:
+            Restaurant:
+              $ref: '#/components/schemas/OrderRestaurant'
+            Customer:
+              $ref: '#/components/schemas/Customer'
+            Order:
+              $ref: '#/components/schemas/Order'
+            OrderItem:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderItem'
+            Tax:
+              type: array
+              items:
+                type: object
+            Discount:
               type: array
               items:
                 type: object
@@ -158,24 +160,6 @@ components:
               type: boolean
             urgent_time:
               type: integer
-    Customer:
-      type: object
-      properties:
-        details:
-          type: object
-          properties:
-            email:
-              type: string
-            name:
-              type: string
-            address:
-              type: string
-            phone:
-              type: string
-            latitude:
-              type: string
-            longitude:
-              type: string
     SaveOrderRequest:
       type: object
       required:
@@ -196,45 +180,58 @@ components:
           type: string
         device_type:
           type: string
-    OrderInfo:
+    Customer:
       type: object
       properties:
-        OrderInfo:
+        details:
           type: object
           properties:
-            Restaurant:
-              $ref: '#/components/schemas/OrderRestaurant'
-            Customer:
-              $ref: '#/components/schemas/Customer'
-            Order:
-              $ref: '#/components/schemas/Order'
-            OrderItem:
-              type: array
-              items:
-                $ref: '#/components/schemas/OrderItem'
-            Tax:
-              type: array
-              items:
-                type: object
-            Discount:
-              type: array
-              items:
-                type: object
-    SaveOrderResponse:
+            email:
+              type: string
+            name:
+              type: string
+            address:
+              type: string
+            phone:
+              type: string
+            latitude:
+              type: string
+            longitude:
+              type: string
+    OrderItem:
       type: object
       properties:
-        success:
+        id:
           type: string
-          description: Success flag (e.g., "1").
-        message:
+        name:
           type: string
-        restID:
+        gst_liability:
           type: string
-        clientOrderID:
+        item_tax:
+          type: array
+          items:
+            type: object
+        item_discount:
           type: string
-        orderID:
+        price:
           type: string
-          description: Petpooja-assigned order identifier.
+        final_price:
+          type: string
+        quantity:
+          type: string
+        description:
+          type: string
+        variation_name:
+          type: string
+        variation_id:
+          type: string
+        AddonItem:
+          type: object
+          properties:
+            details:
+              type: array
+              items:
+                type: object
   securitySchemes:
     PetpoojaAuthHeaders:
       type: apiKey

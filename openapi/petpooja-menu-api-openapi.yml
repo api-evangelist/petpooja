@@ -1,10 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Petpooja Online Ordering Menu API
-  description: 'The Petpooja Online Ordering API (V2.1.0) lets partner ordering platforms and aggregators integrate with the Petpooja restaurant POS. Documented capabilities include fetching a mapped restaurant''s menu/catalog, pushing online orders into the POS (save_order), receiving order-status updates on a partner callback_url, receiving full menu payloads via a partner Push Menu endpoint, and reflecting item stock and store availability. Authentication uses an app key, app secret, and access token issued by Petpooja, scoped to a restaurant (restID).
-
-
-    Some endpoint paths for item stock toggling and store on/off are referenced in Petpooja''s integration material but are not fully published; where the exact path or schema is not publicly reconciled this specification documents the behavior and marks it accordingly rather than fabricating details.'
+  description: The Petpooja Online Ordering API (V2.1.0) lets partner ordering platforms and aggregators integrate with the Petpooja restaurant POS.
   termsOfService: https://www.petpooja.com
   contact:
     name: Petpooja Support
@@ -27,7 +24,7 @@ paths:
       operationId: fetchMappedRestaurantMenu
       tags:
       - Menu
-      summary: Fetch a mapped restaurant's menu / catalog.
+      summary: Fetch a mapped restaurant's menu / catalog
       description: 'Returns the full catalog for a mapped restaurant: restaurant details, order types, categories and parent categories, items, variations, add-on groups, attributes, taxes, and discounts. Authenticated with the app-key, app-secret, and access-token headers and scoped by restID.'
       security:
       - PetpoojaAuthHeaders: []
@@ -46,6 +43,14 @@ paths:
                 $ref: '#/components/schemas/MenuResponse'
 components:
   schemas:
+    FetchMenuRequest:
+      type: object
+      required:
+      - restID
+      properties:
+        restID:
+          type: string
+          description: Petpooja restaurant identifier for the mapped restaurant.
     Restaurant:
       type: object
       properties:
@@ -70,14 +75,38 @@ components:
           type: string
         packaging_charge:
           type: string
-    FetchMenuRequest:
+    MenuItem:
       type: object
-      required:
-      - restID
       properties:
-        restID:
+        itemid:
           type: string
-          description: Petpooja restaurant identifier for the mapped restaurant.
+        itemname:
+          type: string
+        itemcategoryid:
+          type: string
+        price:
+          type: string
+        in_stock:
+          type: string
+          description: Item availability flag (in stock / out of stock).
+        itemallowvariation:
+          type: string
+        variation:
+          type: array
+          items:
+            type: object
+        addon:
+          type: array
+          items:
+            type: object
+        item_tax:
+          type: string
+        is_combo:
+          type: string
+        combo_items:
+          type: array
+          items:
+            type: object
     MenuResponse:
       type: object
       description: Full catalog payload for a mapped restaurant.
@@ -124,38 +153,6 @@ components:
           items:
             type: object
         discounts:
-          type: array
-          items:
-            type: object
-    MenuItem:
-      type: object
-      properties:
-        itemid:
-          type: string
-        itemname:
-          type: string
-        itemcategoryid:
-          type: string
-        price:
-          type: string
-        in_stock:
-          type: string
-          description: Item availability flag (in stock / out of stock).
-        itemallowvariation:
-          type: string
-        variation:
-          type: array
-          items:
-            type: object
-        addon:
-          type: array
-          items:
-            type: object
-        item_tax:
-          type: string
-        is_combo:
-          type: string
-        combo_items:
           type: array
           items:
             type: object

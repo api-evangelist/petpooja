@@ -1,10 +1,7 @@
 {
   "provider": "petpooja",
   "sources": [
-    "petpooja-menu-api-openapi.yml",
-    "petpooja-orders-api-openapi.yml",
-    "petpooja-stock-api-openapi.yml",
-    "petpooja-stores-api-openapi.yml"
+    "_original/petpooja-openapi.yml"
   ],
   "outputs": [
     "petpooja-menu-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "petpooja-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "petpooja-menu-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "petpooja-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "petpooja-stock-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "petpooja-stores-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

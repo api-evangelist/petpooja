@@ -1,10 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Petpooja Online Ordering Menu Stock API
-  description: 'The Petpooja Online Ordering API (V2.1.0) lets partner ordering platforms and aggregators integrate with the Petpooja restaurant POS. Documented capabilities include fetching a mapped restaurant''s menu/catalog, pushing online orders into the POS (save_order), receiving order-status updates on a partner callback_url, receiving full menu payloads via a partner Push Menu endpoint, and reflecting item stock and store availability. Authentication uses an app key, app secret, and access token issued by Petpooja, scoped to a restaurant (restID).
-
-
-    Some endpoint paths for item stock toggling and store on/off are referenced in Petpooja''s integration material but are not fully published; where the exact path or schema is not publicly reconciled this specification documents the behavior and marks it accordingly rather than fabricating details.'
+  title: Petpooja Online Ordering Stock API
+  description: The Petpooja Online Ordering API (V2.1.0) lets partner ordering platforms and aggregators integrate with the Petpooja restaurant POS.
   termsOfService: https://www.petpooja.com
   contact:
     name: Petpooja Support
@@ -27,7 +24,7 @@ paths:
       operationId: updateItemStock
       tags:
       - Stock
-      summary: Mark menu items in stock or out of stock.
+      summary: Mark menu items in stock or out of stock
       description: Sets the in_stock flag for one or more menu items so partner platforms reflect live availability against Petpooja POS inventory. The exact endpoint path and request schema are not fully published; this operation documents the known in_stock behavior. Treat the path and schema as unreconciled.
       security:
       - PetpoojaAuthHeaders: []
@@ -46,6 +43,13 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
 components:
   schemas:
+    GenericResponse:
+      type: object
+      properties:
+        success:
+          type: string
+        message:
+          type: string
     ItemStockRequest:
       type: object
       description: Unreconciled. Documents the known in_stock toggle behavior for items.
@@ -63,13 +67,6 @@ components:
           items:
             type: string
         autoTurnOnTime:
-          type: string
-    GenericResponse:
-      type: object
-      properties:
-        success:
-          type: string
-        message:
           type: string
   securitySchemes:
     PetpoojaAuthHeaders:
