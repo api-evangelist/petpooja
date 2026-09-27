@@ -43,38 +43,6 @@ paths:
                 $ref: '#/components/schemas/MenuResponse'
 components:
   schemas:
-    FetchMenuRequest:
-      type: object
-      required:
-      - restID
-      properties:
-        restID:
-          type: string
-          description: Petpooja restaurant identifier for the mapped restaurant.
-    Restaurant:
-      type: object
-      properties:
-        restaurantid:
-          type: string
-        active:
-          type: string
-        menusharingcode:
-          type: string
-          description: Menu Sharing Code identifying the restaurant's shared menu.
-        currency_html:
-          type: string
-        country:
-          type: string
-        city:
-          type: string
-        minimumorderamount:
-          type: string
-        minimumdeliverytime:
-          type: string
-        deliverycharge:
-          type: string
-        packaging_charge:
-          type: string
     MenuItem:
       type: object
       properties:
@@ -107,6 +75,14 @@ components:
           type: array
           items:
             type: object
+    FetchMenuRequest:
+      type: object
+      required:
+      - restID
+      properties:
+        restID:
+          type: string
+          description: Petpooja restaurant identifier for the mapped restaurant.
     MenuResponse:
       type: object
       description: Full catalog payload for a mapped restaurant.
@@ -156,6 +132,30 @@ components:
           type: array
           items:
             type: object
+    Restaurant:
+      type: object
+      properties:
+        restaurantid:
+          type: string
+        active:
+          type: string
+        menusharingcode:
+          type: string
+          description: Menu Sharing Code identifying the restaurant's shared menu.
+        currency_html:
+          type: string
+        country:
+          type: string
+        city:
+          type: string
+        minimumorderamount:
+          type: string
+        minimumdeliverytime:
+          type: string
+        deliverycharge:
+          type: string
+        packaging_charge:
+          type: string
   securitySchemes:
     PetpoojaAuthHeaders:
       type: apiKey
