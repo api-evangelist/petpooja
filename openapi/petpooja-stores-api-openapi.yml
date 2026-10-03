@@ -43,6 +43,13 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
 components:
   schemas:
+    GenericResponse:
+      type: object
+      properties:
+        success:
+          type: string
+        message:
+          type: string
     StoreStatusRequest:
       type: object
       description: Unreconciled. Documents the known turn_on / turn_off behavior for store availability.
@@ -56,13 +63,6 @@ components:
           type: string
           description: Time after which online ordering resumes.
         reason:
-          type: string
-    GenericResponse:
-      type: object
-      properties:
-        success:
-          type: string
-        message:
           type: string
   securitySchemes:
     PetpoojaAuthHeaders:
