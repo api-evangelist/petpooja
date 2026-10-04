@@ -43,13 +43,6 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
 components:
   schemas:
-    GenericResponse:
-      type: object
-      properties:
-        success:
-          type: string
-        message:
-          type: string
     ItemStockRequest:
       type: object
       description: Unreconciled. Documents the known in_stock toggle behavior for items.
@@ -67,6 +60,13 @@ components:
           items:
             type: string
         autoTurnOnTime:
+          type: string
+    GenericResponse:
+      type: object
+      properties:
+        success:
+          type: string
+        message:
           type: string
   securitySchemes:
     PetpoojaAuthHeaders:

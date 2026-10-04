@@ -43,62 +43,6 @@ paths:
                 $ref: '#/components/schemas/MenuResponse'
 components:
   schemas:
-    Restaurant:
-      type: object
-      properties:
-        restaurantid:
-          type: string
-        active:
-          type: string
-        menusharingcode:
-          type: string
-          description: Menu Sharing Code identifying the restaurant's shared menu.
-        currency_html:
-          type: string
-        country:
-          type: string
-        city:
-          type: string
-        minimumorderamount:
-          type: string
-        minimumdeliverytime:
-          type: string
-        deliverycharge:
-          type: string
-        packaging_charge:
-          type: string
-    MenuItem:
-      type: object
-      properties:
-        itemid:
-          type: string
-        itemname:
-          type: string
-        itemcategoryid:
-          type: string
-        price:
-          type: string
-        in_stock:
-          type: string
-          description: Item availability flag (in stock / out of stock).
-        itemallowvariation:
-          type: string
-        variation:
-          type: array
-          items:
-            type: object
-        addon:
-          type: array
-          items:
-            type: object
-        item_tax:
-          type: string
-        is_combo:
-          type: string
-        combo_items:
-          type: array
-          items:
-            type: object
     MenuResponse:
       type: object
       description: Full catalog payload for a mapped restaurant.
@@ -148,6 +92,62 @@ components:
           type: array
           items:
             type: object
+    MenuItem:
+      type: object
+      properties:
+        itemid:
+          type: string
+        itemname:
+          type: string
+        itemcategoryid:
+          type: string
+        price:
+          type: string
+        in_stock:
+          type: string
+          description: Item availability flag (in stock / out of stock).
+        itemallowvariation:
+          type: string
+        variation:
+          type: array
+          items:
+            type: object
+        addon:
+          type: array
+          items:
+            type: object
+        item_tax:
+          type: string
+        is_combo:
+          type: string
+        combo_items:
+          type: array
+          items:
+            type: object
+    Restaurant:
+      type: object
+      properties:
+        restaurantid:
+          type: string
+        active:
+          type: string
+        menusharingcode:
+          type: string
+          description: Menu Sharing Code identifying the restaurant's shared menu.
+        currency_html:
+          type: string
+        country:
+          type: string
+        city:
+          type: string
+        minimumorderamount:
+          type: string
+        minimumdeliverytime:
+          type: string
+        deliverycharge:
+          type: string
+        packaging_charge:
+          type: string
     FetchMenuRequest:
       type: object
       required:

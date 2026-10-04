@@ -43,6 +43,60 @@ paths:
                 $ref: '#/components/schemas/SaveOrderResponse'
 components:
   schemas:
+    SaveOrderRequest:
+      type: object
+      required:
+      - app_key
+      - app_secret
+      - access_token
+      - orderinfo
+      properties:
+        app_key:
+          type: string
+        app_secret:
+          type: string
+        access_token:
+          type: string
+        orderinfo:
+          $ref: '#/components/schemas/OrderInfo'
+        udid:
+          type: string
+        device_type:
+          type: string
+    OrderItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        gst_liability:
+          type: string
+        item_tax:
+          type: array
+          items:
+            type: object
+        item_discount:
+          type: string
+        price:
+          type: string
+        final_price:
+          type: string
+        quantity:
+          type: string
+        description:
+          type: string
+        variation_name:
+          type: string
+        variation_id:
+          type: string
+        AddonItem:
+          type: object
+          properties:
+            details:
+              type: array
+              items:
+                type: object
     Customer:
       type: object
       properties:
@@ -124,84 +178,6 @@ components:
               type: boolean
             urgent_time:
               type: integer
-    OrderInfo:
-      type: object
-      properties:
-        OrderInfo:
-          type: object
-          properties:
-            Restaurant:
-              $ref: '#/components/schemas/OrderRestaurant'
-            Customer:
-              $ref: '#/components/schemas/Customer'
-            Order:
-              $ref: '#/components/schemas/Order'
-            OrderItem:
-              type: array
-              items:
-                $ref: '#/components/schemas/OrderItem'
-            Tax:
-              type: array
-              items:
-                type: object
-            Discount:
-              type: array
-              items:
-                type: object
-    OrderItem:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        gst_liability:
-          type: string
-        item_tax:
-          type: array
-          items:
-            type: object
-        item_discount:
-          type: string
-        price:
-          type: string
-        final_price:
-          type: string
-        quantity:
-          type: string
-        description:
-          type: string
-        variation_name:
-          type: string
-        variation_id:
-          type: string
-        AddonItem:
-          type: object
-          properties:
-            details:
-              type: array
-              items:
-                type: object
-    SaveOrderRequest:
-      type: object
-      required:
-      - app_key
-      - app_secret
-      - access_token
-      - orderinfo
-      properties:
-        app_key:
-          type: string
-        app_secret:
-          type: string
-        access_token:
-          type: string
-        orderinfo:
-          $ref: '#/components/schemas/OrderInfo'
-        udid:
-          type: string
-        device_type:
-          type: string
     OrderRestaurant:
       type: object
       properties:
@@ -232,6 +208,30 @@ components:
         orderID:
           type: string
           description: Petpooja-assigned order identifier.
+    OrderInfo:
+      type: object
+      properties:
+        OrderInfo:
+          type: object
+          properties:
+            Restaurant:
+              $ref: '#/components/schemas/OrderRestaurant'
+            Customer:
+              $ref: '#/components/schemas/Customer'
+            Order:
+              $ref: '#/components/schemas/Order'
+            OrderItem:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderItem'
+            Tax:
+              type: array
+              items:
+                type: object
+            Discount:
+              type: array
+              items:
+                type: object
   securitySchemes:
     PetpoojaAuthHeaders:
       type: apiKey
