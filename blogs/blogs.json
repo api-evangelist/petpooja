@@ -1,0 +1,14 @@
+{
+  "repo": "petpooja",
+  "feeds": [
+    {
+      "source": "https://blog.petpooja.com/feed/",
+      "feed_url": "https://blog.petpooja.com/feed/",
+      "title": "",
+      "saved": 9,
+      "method": "feed"
+    }
+  ],
+  "post_count": 9,
+  "fetched": "2026-10-10T13:15:00Z"
+}
