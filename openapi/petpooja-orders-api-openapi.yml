@@ -43,6 +43,30 @@ paths:
                 $ref: '#/components/schemas/SaveOrderResponse'
 components:
   schemas:
+    OrderInfo:
+      type: object
+      properties:
+        OrderInfo:
+          type: object
+          properties:
+            Restaurant:
+              $ref: '#/components/schemas/OrderRestaurant'
+            Customer:
+              $ref: '#/components/schemas/Customer'
+            Order:
+              $ref: '#/components/schemas/Order'
+            OrderItem:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderItem'
+            Tax:
+              type: array
+              items:
+                type: object
+            Discount:
+              type: array
+              items:
+                type: object
     SaveOrderRequest:
       type: object
       required:
@@ -97,24 +121,21 @@ components:
               type: array
               items:
                 type: object
-    Customer:
+    OrderRestaurant:
       type: object
       properties:
         details:
           type: object
           properties:
-            email:
-              type: string
-            name:
+            res_name:
               type: string
             address:
               type: string
-            phone:
+            contact_information:
               type: string
-            latitude:
+            restID:
               type: string
-            longitude:
-              type: string
+              description: Petpooja restaurant identifier.
     Order:
       type: object
       properties:
@@ -178,21 +199,6 @@ components:
               type: boolean
             urgent_time:
               type: integer
-    OrderRestaurant:
-      type: object
-      properties:
-        details:
-          type: object
-          properties:
-            res_name:
-              type: string
-            address:
-              type: string
-            contact_information:
-              type: string
-            restID:
-              type: string
-              description: Petpooja restaurant identifier.
     SaveOrderResponse:
       type: object
       properties:
@@ -208,30 +214,24 @@ components:
         orderID:
           type: string
           description: Petpooja-assigned order identifier.
-    OrderInfo:
+    Customer:
       type: object
       properties:
-        OrderInfo:
+        details:
           type: object
           properties:
-            Restaurant:
-              $ref: '#/components/schemas/OrderRestaurant'
-            Customer:
-              $ref: '#/components/schemas/Customer'
-            Order:
-              $ref: '#/components/schemas/Order'
-            OrderItem:
-              type: array
-              items:
-                $ref: '#/components/schemas/OrderItem'
-            Tax:
-              type: array
-              items:
-                type: object
-            Discount:
-              type: array
-              items:
-                type: object
+            email:
+              type: string
+            name:
+              type: string
+            address:
+              type: string
+            phone:
+              type: string
+            latitude:
+              type: string
+            longitude:
+              type: string
   securitySchemes:
     PetpoojaAuthHeaders:
       type: apiKey
