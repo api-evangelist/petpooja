@@ -1,4 +1,4 @@
-# Petpooja (petpooja)
+# Petpooja
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,135 +66,121 @@
 
 Petpooja is a restaurant point-of-sale (POS) and management platform serving 75,000+ restaurants across India, the Middle East, Canada, and South Africa. Its Online Ordering API lets aggregators and partner ordering platforms sync a restaurant's menu/catalog, push orders into the Petpooja POS, receive order-status callbacks, and toggle item stock and store availability.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/petpooja/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/petpooja/refs/heads/main/apis.yml)
+**Areas:** Restaurant · Point-of-Sale · Online Ordering · Menus · Food Delivery
 
-## Tags
+## Petpooja on APIs.io
 
-- Restaurant
-- POS
-- Online Ordering
-- Menu
-- Food Delivery
+Everything profiled for Petpooja is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/petpooja/](https://apis.io/providers/petpooja/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (4)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [Petpooja Menu API](https://apis.io/apis/petpooja/petpooja-menu-api/) — Fetch a mapped restaurant's menu / catalog from Petpooja.
+- [Petpooja Orders API](https://apis.io/apis/petpooja/petpooja-orders-api/) — Push online orders into the Petpooja POS.
+- [Petpooja Stock API](https://apis.io/apis/petpooja/petpooja-stock-api/) — Item stock and availability.
+- [Petpooja Stores API](https://apis.io/apis/petpooja/petpooja-stores-api/) — Store / restaurant online-ordering availability.
 
-## APIs
+### Published properties
 
-### Petpooja Menu / Catalog API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Fetch a mapped restaurant's full menu (categories, items, variations, add-on groups, attributes, taxes, discounts) from Petpooja, and receive Petpooja's Push Menu callback when a restaurant updates its catalog. Authenticated with app-key, app-secret, and access-token; scoped by restID.
+#### Agentic access (1)
 
-- **Human URL:** [https://onlineorderingapisv210.docs.apiary.io/](https://onlineorderingapisv210.docs.apiary.io/)
-- **Base URL:** `https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Petpooja Agentic Access](https://apis.io/agentic-access/petpooja/petpooja-agentic-access/)
 
-- Menu
-- Catalog
-- Items
+#### Collections (5)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://onlineorderingapisv210.docs.apiary.io/)
-- [API Reference](https://onlineorderingapisv210.docs.apiary.io/)
-- [OpenAPI](openapi/petpooja-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/petpooja.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/petpooja.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Petpooja Online Ordering API](https://apis.io/collections/petpooja/open-petpooja/)
+- [Petpooja Online Ordering Menu API](https://apis.io/collections/petpooja/open-petpooja-menu-api/)
+- [Petpooja Online Ordering Menu Orders API](https://apis.io/collections/petpooja/open-petpooja-orders-api/)
+- [Petpooja Online Ordering Menu Stock API](https://apis.io/collections/petpooja/open-petpooja-stock-api/)
+- [Petpooja Online Ordering Menu Stores API](https://apis.io/collections/petpooja/open-petpooja-stores-api/)
 
-### Petpooja Orders API
+#### Security (3)
 
-Push a new online order (customer, order, order items, taxes, discounts, delivery and packing charges, payment type, prep time, OTP) into the Petpooja POS via save_order. Authenticated with app_key, app_secret, and access_token in the request body.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://onlineorderingapisv210.docs.apiary.io/](https://onlineorderingapisv210.docs.apiary.io/)
-- **Base URL:** `https://47pfzh5sf2.execute-api.ap-southeast-1.amazonaws.com/V1`
+- [Petpooja Authentication](https://apis.io/security/petpooja/petpooja-authentication/)
+- [Petpooja Domain Security](https://apis.io/security/petpooja/petpooja-domain-security/)
+- [Petpooja Vulnerability Disclosure](https://apis.io/security/petpooja/petpooja-vulnerability-disclosure/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Orders
-- Save Order
-- POS
+Published plans, tiers and prices.
 
-#### Properties
+- [Petpooja Plans Pricing](https://apis.io/plans/petpooja/petpooja-plans-pricing/)
 
-- [Documentation](https://onlineorderingapisv210.docs.apiary.io/)
-- [API Reference](https://onlineorderingapisv210.docs.apiary.io/)
-- [OpenAPI](openapi/petpooja-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/petpooja.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/petpooja.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Petpooja Stores API
+Published request limits.
 
-Turn a restaurant/store online ordering on or off and set a turn-on time (store availability). Documented via the turn_on_time mechanism; exact endpoint path and request schema are not publicly reconciled.
+- [Petpooja Rate Limits](https://apis.io/rate-limits/petpooja/petpooja-rate-limits/)
 
-- **Human URL:** [https://onlineorderingapisv210.docs.apiary.io/](https://onlineorderingapisv210.docs.apiary.io/)
-- **Base URL:** `https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Stores
-- Restaurant
-- Availability
+- [Petpooja Finops](https://apis.io/finops/petpooja/petpooja-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://onlineorderingapisv210.docs.apiary.io/)
-- [OpenAPI](openapi/petpooja-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/petpooja.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/petpooja.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Petpooja Stock / Availability API
-
-Mark menu items in stock or out of stock via the item in_stock flag so partner platforms reflect live availability against Petpooja POS inventory. Exact stock-toggle endpoint path and schema are not publicly reconciled.
-
-- **Human URL:** [https://onlineorderingapisv210.docs.apiary.io/](https://onlineorderingapisv210.docs.apiary.io/)
-- **Base URL:** `https://qle1yy2ydc.execute-api.ap-southeast-1.amazonaws.com/V1`
-
-#### Tags
-
-- Stock
-- Availability
-- In Stock
-
-#### Properties
-
-- [Documentation](https://onlineorderingapisv210.docs.apiary.io/)
-- [OpenAPI](openapi/petpooja-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/petpooja.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/petpooja.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Petpooja Callbacks API
-
-Partner-hosted endpoints that Petpooja calls. The order callback_url receives order-status updates (e.g., Accept / Reject / Food Ready), and the Push Menu endpoint receives full menu payloads when a restaurant updates its catalog.
-
-- **Human URL:** [https://onlineorderingapisv210.docs.apiary.io/](https://onlineorderingapisv210.docs.apiary.io/)
-- **Base URL:** `https://onlineorderingapisv210.docs.apiary.io`
-
-#### Tags
-
-- Callbacks
-- Webhooks
-- Order Status
-
-#### Properties
-
-- [Documentation](https://onlineorderingapisv210.docs.apiary.io/)
-- [OpenAPI](openapi/petpooja-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/petpooja.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/petpooja.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/petpooja)
 - [Website](https://www.petpooja.com)
 - [Documentation](https://onlineorderingapisv210.docs.apiary.io/)
-- [Plans](plans/petpooja-plans-pricing.yml)
-- [Rate Limits](rate-limits/petpooja-rate-limits.yml)
-- [Fin Ops](finops/petpooja-finops.yml)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 25.2** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 48.2 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 21.4 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 17.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/petpooja/](https://apis.io/providers/petpooja/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Petpooja: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/petpooja/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
